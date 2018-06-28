@@ -41,9 +41,35 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+        case 0:
+            
+            
+            //주소검색를 위한 UIAlertController
+            let alertController = UIAlertController(title: "주소 웹검색", message: "주소 : \(self.local1)", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "사파리검색", style: UIAlertActionStyle.destructive){(action: UIAlertAction) in
+                
+                
+                let aString = "https://www.google.co.kr/search?q=\(self.local1)"
+                let newString = aString.replacingOccurrences(of: " ", with: "+")
+                let queryString = newString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                
+                guard let url = URL(string: queryString!), UIApplication.shared.canOpenURL(url) else { return }
+                
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                
+            }
+            
+            let cancelButton = UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelButton)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
         case 1:
             
-            //전화걸기를 위한 UIAlertController창
+            //전화걸기를 위한 UIAlertController
             let alertController = UIAlertController(title: "전화걸기", message: "전화번호 : \(self.tel1)", preferredStyle: UIAlertControllerStyle.alert)
             
             let okAction = UIAlertAction(title: "전화걸기", style: UIAlertActionStyle.destructive){(action: UIAlertAction) in
