@@ -46,7 +46,7 @@ class MyTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        self.title = "DIT 배달통"
+        self.title = "DIT 배민"
     }
     
     // MARK: - Table view data source
